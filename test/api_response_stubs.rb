@@ -24,22 +24,35 @@ def valid_capture_response
     'setlstat' => 'Pending',
     'retref' => '288002073633',
     'merchid' => '000000927996',
-    'account' => '41XXXXXXXXXX4113'
+    'account' => '41XXXXXXXXXX4113',
+    'respproc' => 'FNOR',
+    'resptext' => 'Approval',
+    'respstat' => 'A',
+    'respcode' => '00',
+    'batchid' => '1900941569',
+    'token' => '9418594164541111',
+    'commcard' => ' C '
   }
 end
-
 def valid_inquire_response # rubocop:disable Metrics/MethodLength
   {
     'amount' => '596.00',
     'resptext' => 'Approval',
-    'setlstat' => 'NOTCAPTURED',
+    'setlstat' => 'Accepted',
     'respcode' => '00',
     'retref' => '288015190411',
     'merchid' => '000000927996',
-    'account' => '41XXXXXXXXXX4113',
+    'account' => '9418594164541111',
     'respproc' => 'FNOR',
     'respstat' => 'A',
-    'currency' => 'USD'
+    'currency' => 'USD',
+    'token' => '9418594164541111',
+    'authdate' => '20180410',
+    'lastfour' => '1111',
+    'name' => 'TOM JONES',
+    'capturedate' => '20180326065748',
+    'batchid' => '1900941569',
+    'settledate' => '20180327143721'
   }
 end
 
@@ -108,7 +121,9 @@ def valid_profile_get_response #rubocop:disable Metrics/MethodLength
     "city" => "ANYTOWN",
     "expiry" => "0214",
     "profileid" => "12345678901234567890",
-    "acctid" => "1"
+    "acctid" => "1",
+    "gsacard" => "N",
+    "auoptout" => "N"
   }
 end
 
@@ -125,23 +140,45 @@ end
 
 def valid_profile_put_response #rubocop:disable Metrics/MethodLength
   {
-    "region" => "AK",
-    "phone" => "7778789999",
-    "accttype" => "VISA",
-    "postal" => "19090",
-    "ssnl4" => "3655",
-    "respproc" => "PPS",
-    "expiry" => "0214",
-    "city" => "ANYTOWN",
     "country" => "US",
-    "resptext" => "Profile Saved",
-    "token" => "9440670166031111",
-    "respcode" => "09",
     "address" => "123 MAIN STREET",
-    "name" => "TOM JONES",
+    "resptext" => "Profile Saved",
+    "city" => "ANYTOWN",
+    "acctid" => "1",
+    "respcode" => "09",
+    "defaultacct" => "Y",
+    "accttype" => "VISA",
+    "token" => "9441149619831111",
+    "account" => "41XXXXXXXXXX1111",
+    "email" => "test@test.com",
     "license" => "123451254",
+    "respproc" => "PPS",
+    "phone" => "7778789999",
+    "profileid" => "12305454023615201322",
+    "name" => "TOM JONES",
+    "auoptout" => "N",
+    "postal" => "19090",
+    "expiry" => "0214",
+    "region" => "AK",
+    "ssnl4" => "3655",
     "respstat" => "A",
-    "profileid" => "12345678901234567890",
-    "acctid" => "1"
+    "gsacard" => "N"
+  }
+end
+
+def valid_bin_response
+  {
+    "country" => "USA",
+    "product" => "V",
+    "cardusestring" => "True credit",
+    "gsa" => false,
+    "corporate" => true,
+    "fsa" => false,
+    "subtype" => "Visa Corporate T&E",
+    "purchase" => false,
+    "prepaid" => false,
+    "binlo" => "478823XXX",
+    "issuer" => "JPMorgan Chase Bank N.A. - Commercial",
+    "binhi" => "478825XXX"
   }
 end

@@ -1,8 +1,8 @@
 require 'test_helper'
 
-describe CardConnect::Service::ProfileGetResponse do
+describe CardConnect::Service::ProfilePutResponse do
   before do
-    @response = CardConnect::Service::ProfileGetResponse.new(valid_profile_get_response)
+    @response = CardConnect::Service::ProfilePutResponse.new(valid_profile_put_response)
   end
 
   after do
@@ -11,7 +11,7 @@ describe CardConnect::Service::ProfileGetResponse do
 
   describe 'FIELDS' do
     it 'should have profile id' do
-      @response.profileid.must_equal '12345678901234567890'
+      @response.profileid.must_equal '12305454023615201322'
     end
 
     it 'should have account id' do
@@ -19,7 +19,7 @@ describe CardConnect::Service::ProfileGetResponse do
     end
 
     it 'should have response status' do
-      @response.respstat.must_equal 'B'
+      @response.respstat.must_equal 'A'
     end
 
     it 'should have account' do
@@ -27,11 +27,11 @@ describe CardConnect::Service::ProfileGetResponse do
     end
 
     it 'should have response code' do
-      @response.respcode.must_equal 'A'
+      @response.respcode.must_equal '09'
     end
 
     it 'should have response text' do
-      @response.resptext.must_equal 'Profile found'
+      @response.resptext.must_equal 'Profile Saved'
     end
 
     it 'should have respproc' do
@@ -75,7 +75,7 @@ describe CardConnect::Service::ProfileGetResponse do
     end
 
     it 'should have ssnl4' do
-      @response.ssnl4.must_equal '1234'
+      @response.ssnl4.must_equal '3655'
     end
 
     it 'should have email' do
@@ -83,7 +83,7 @@ describe CardConnect::Service::ProfileGetResponse do
     end
 
     it 'should have defaultacct' do
-      @response.defaultacct.must_equal '12345'
+      @response.defaultacct.must_equal 'Y'
     end
 
     it 'should have license' do
@@ -91,7 +91,7 @@ describe CardConnect::Service::ProfileGetResponse do
     end
 
     it 'should have token' do
-      @response.token.must_equal '9440670166031111'
+      @response.token.must_equal '9441149619831111'
     end
 
     it 'should have gsacard' do
@@ -109,8 +109,8 @@ describe CardConnect::Service::ProfileGetResponse do
     end
 
     it 'should be false when there are errors' do
-      prof_response = valid_profile_get_response.merge!('respstat' => 'C', 'resptext' => 'this is an error')
-      response = CardConnect::Service::ProfileGetResponse.new(prof_response)
+      prof_response = valid_profile_put_response.merge!('respstat' => 'C', 'resptext' => 'this is an error')
+      response = CardConnect::Service::ProfilePutResponse.new(prof_response)
       response.success?.must_equal false
     end
   end
@@ -121,15 +121,15 @@ describe CardConnect::Service::ProfileGetResponse do
     end
 
     it 'should be an array of error messages when there are errors' do
-      prof_response = valid_profile_get_response.merge!('respstat' => 'C', 'resptext' => 'this is an error')
-      response = CardConnect::Service::ProfileGetResponse.new(prof_response)
+      prof_response = valid_profile_put_response.merge!('respstat' => 'C', 'resptext' => 'this is an error')
+      response = CardConnect::Service::ProfilePutResponse.new(prof_response)
       response.errors.must_equal ['this is an error']
     end
   end
 
   describe '#body' do
     it 'should generate hash with all the right values' do
-      @response.body.must_equal symbolize_keys(valid_profile_get_response)
+      @response.body.must_equal symbolize_keys(valid_profile_put_response)
     end
   end
 end

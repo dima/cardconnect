@@ -1,21 +1,19 @@
 module CardConnect
   module Service
-    class CaptureRequest
+    class BinRequest
       include Utils
 
-      REQUIRED_FIELDS = [:merchid, :retref].freeze
+      REQUIRED_FIELDS = [:token, :merchid].freeze
 
-      OPTIONAL_FIELDS = [:authcode, :amount, :invoiceid, :ponumber, :taxamnt].freeze
-
-      FIELDS = REQUIRED_FIELDS + OPTIONAL_FIELDS
+      FIELDS = REQUIRED_FIELDS
 
       attr_accessor(*FIELDS)
       attr_reader :errors
 
-      # Initializes a new Capture Request
+      # Initializes a new BinGetRequest
       #
       # @param attrs [Hash]
-      # @return CardConnect::CaptureRequest
+      # @return CardConnect::BinGetRequest
       def initialize(attrs = {})
         @errors = []
         set_attributes(attrs, FIELDS)
@@ -29,7 +27,7 @@ module CardConnect
 
       # Builds the request payload
       def payload
-        FIELDS.collect{|field| {field => send(field)} }.reduce({}, :merge)
+        "/#{merchid}/#{token}"
       end
 
       private
